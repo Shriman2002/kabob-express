@@ -1,0 +1,797 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Menu — Kabob Express</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#1a1613; --bg-2:#221d19;
+    --ink:#f3ece0; --ink-dim:#c9bfae; --ink-mute:#8a8071;
+    --line:#3a322b; --line-soft:#2a2420;
+    --saffron:#e6a23c; --ember:#c4553a;
+    --card:#201b17;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:var(--bg);color:var(--ink);
+    -webkit-font-smoothing:antialiased;line-height:1.5;
+    padding-bottom:96px;
+  }
+  @media (min-width:900px){body{padding-bottom:84px}}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+  @media (min-width:700px){.wrap{padding:0 32px}}
+  a{color:inherit}
+
+  /* Sticky top bar */
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    background:rgba(26,22,19,.82);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line-soft);
+    padding:14px 0;font-size:13px;
+  }
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .mark{
+    display:flex;align-items:center;gap:10px;
+    font-family:'Instrument Serif',serif;font-size:22px;
+    text-decoration:none;color:var(--ink);
+  }
+  .mark em{font-style:italic;color:var(--saffron);font-weight:400}
+  .topnav{display:flex;gap:2px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+  .topnav a{
+    text-decoration:none;color:var(--ink-mute);
+    padding:8px 10px;border-radius:3px;
+    transition:color .15s ease, background .15s ease;
+  }
+  .topnav a:hover{color:var(--ink)}
+  .topnav a[aria-current]{color:var(--ink);background:var(--bg-2)}
+  @media (min-width:700px){
+    .mark{font-size:24px}
+    .topnav{font-size:11px}
+    .topnav a{padding:8px 12px}
+  }
+
+  /* Hero */
+  .hero{padding:48px 0 32px;border-bottom:1px solid var(--line-soft);position:relative;overflow:hidden}
+  @media (min-width:700px){.hero{padding:72px 0 44px}}
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(55% 75% at 85% 20%, rgba(230,162,60,.06), transparent 60%),
+      radial-gradient(45% 60% at 15% 90%, rgba(196,85,58,.05), transparent 60%);
+    pointer-events:none;
+  }
+  .hero .wrap{position:relative;z-index:1}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    letter-spacing:.22em;text-transform:uppercase;color:var(--saffron);
+    margin-bottom:18px;display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:24px;height:1px;background:var(--saffron)}
+  h1{
+    font-family:'Instrument Serif',serif;font-weight:400;
+    font-size:clamp(36px, 8vw, 80px);line-height:1;letter-spacing:-.02em;
+    margin:0 0 16px;max-width:18ch;text-wrap:pretty;
+  }
+  h1 em{color:var(--saffron);font-style:italic}
+  .sub{color:var(--ink-dim);font-size:15px;max-width:62ch;margin:0}
+  @media (min-width:700px){.sub{font-size:17px}}
+  .note{margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-mute)}
+
+  /* Sticky filter bar */
+  .filterbar{
+    position:sticky;top:60px;z-index:40;
+    background:rgba(26,22,19,.92);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line-soft);
+    padding:12px 0;
+  }
+  @media (min-width:700px){.filterbar{top:64px;padding:14px 0}}
+  .chips{
+    display:flex;gap:8px;
+    overflow-x:auto;overflow-y:hidden;
+    scrollbar-width:none;-webkit-overflow-scrolling:touch;
+    padding:2px 0;
+  }
+  .chips::-webkit-scrollbar{display:none}
+  @media (min-width:700px){
+    .chips{flex-wrap:wrap;overflow:visible}
+  }
+  .chip{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+    padding:9px 14px;border:1px solid var(--line);border-radius:999px;
+    color:var(--ink-dim);text-decoration:none;
+    white-space:nowrap;flex-shrink:0;
+    background:var(--card);cursor:pointer;
+    transition:all .15s ease;
+    min-height:36px;display:inline-flex;align-items:center;
+  }
+  .chip:hover{color:var(--ink);border-color:var(--ink-mute)}
+  .chip.active{color:#1a1208;background:var(--saffron);border-color:var(--saffron)}
+
+  /* Menu */
+  main{padding:32px 0 72px}
+  @media (min-width:700px){main{padding:48px 0 96px}}
+  .section{margin-bottom:56px;scroll-margin-top:120px}
+  @media (min-width:700px){.section{margin-bottom:72px;scroll-margin-top:140px}}
+  .section-head{
+    display:flex;align-items:baseline;justify-content:space-between;gap:16px;
+    margin-bottom:6px;padding-bottom:16px;
+    border-bottom:1px solid var(--line);
+  }
+  .section-head h2{
+    font-family:'Instrument Serif',serif;font-weight:400;
+    font-size:32px;line-height:1;letter-spacing:-.01em;margin:0;
+  }
+  @media (min-width:700px){.section-head h2{font-size:44px}}
+  .section-head .meta{
+    font-family:'JetBrains Mono',monospace;font-size:10px;
+    letter-spacing:.22em;text-transform:uppercase;color:var(--ink-mute);
+    text-align:right;flex-shrink:0;
+  }
+  @media (min-width:700px){.section-head .meta{font-size:11px}}
+  .section-note{color:var(--ink-mute);font-size:13px;margin:12px 0 20px;max-width:60ch}
+  @media (min-width:700px){.section-note{font-size:14px;margin:14px 0 24px}}
+
+  /* Item cards with photos */
+  .items{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:14px;
+  }
+  @media (min-width:700px){
+    .items{grid-template-columns:1fr 1fr;gap:16px 20px}
+  }
+  @media (min-width:1000px){
+    .items{grid-template-columns:1fr 1fr 1fr;gap:20px}
+  }
+
+  .item{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:6px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:row;
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .item:hover{border-color:var(--ink-mute)}
+  @media (min-width:700px){
+    .item{flex-direction:column}
+  }
+
+  .item .photo{
+    flex-shrink:0;
+    width:120px;height:auto;
+    background:linear-gradient(135deg, #2a2420 0%, #1f1a17 100%);
+    position:relative;overflow:hidden;
+  }
+  @media (min-width:700px){
+    .item .photo{width:100%;aspect-ratio:4/3;height:auto}
+  }
+  .item .photo img{
+    width:100%;height:100%;object-fit:cover;display:block;
+    transition:transform .5s ease;
+    background:#2a2420;
+  }
+  .item:hover .photo img{transform:scale(1.04)}
+  .item .photo::after{
+    /* subtle dark vignette for text legibility */
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg, transparent 50%, rgba(0,0,0,.25) 100%);
+    pointer-events:none;
+  }
+  .pop-tag{
+    position:absolute;top:10px;left:10px;z-index:2;
+    background:rgba(230,162,60,.95);color:#1a1208;
+    font-family:'JetBrains Mono',monospace;font-size:9px;
+    letter-spacing:.18em;text-transform:uppercase;font-weight:600;
+    padding:4px 8px;border-radius:3px;
+  }
+
+  .item .body{
+    flex:1;
+    padding:14px 16px 14px 14px;
+    display:flex;flex-direction:column;gap:4px;
+    min-width:0;
+  }
+  @media (min-width:700px){
+    .item .body{padding:18px 18px 20px}
+  }
+  .item .top{
+    display:flex;align-items:baseline;justify-content:space-between;gap:10px;
+  }
+  .item .num{
+    font-family:'JetBrains Mono',monospace;font-size:10px;
+    color:var(--ink-mute);letter-spacing:.14em;text-transform:uppercase;
+  }
+  .item .price{
+    font-family:'JetBrains Mono',monospace;font-size:13.5px;
+    color:var(--saffron);font-variant-numeric:tabular-nums;
+    white-space:nowrap;font-weight:500;
+  }
+  .item .name{
+    font-size:16px;font-weight:600;color:var(--ink);
+    letter-spacing:-.005em;line-height:1.25;margin-top:2px;
+  }
+  @media (min-width:700px){.item .name{font-size:17px}}
+  .item .desc{
+    font-size:13px;color:var(--ink-dim);
+    text-wrap:pretty;margin-top:4px;
+    display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+  }
+  @media (min-width:700px){.item .desc{font-size:13.5px;-webkit-line-clamp:unset}}
+  .item .tags{
+    margin-top:auto;padding-top:10px;
+    display:flex;flex-wrap:wrap;gap:5px;
+  }
+  .item .tags span{
+    font-family:'JetBrains Mono',monospace;font-size:9.5px;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute);
+    padding:3px 8px;border:1px solid var(--line);border-radius:999px;
+  }
+
+  footer{
+    border-top:1px solid var(--line-soft);
+    padding:24px 0 40px;color:var(--ink-mute);font-size:12px;
+  }
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+  /* Sticky bottom order bar */
+  .orderbar{
+    position:fixed;left:0;right:0;bottom:0;z-index:60;
+    background:rgba(26,22,19,.92);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-top:1px solid var(--line);
+    padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+  }
+  .orderbar-inner{
+    max-width:1180px;margin:0 auto;
+    display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:stretch;
+  }
+  .orderbar .label{
+    display:none;
+    font-family:'JetBrains Mono',monospace;font-size:10px;
+    letter-spacing:.22em;text-transform:uppercase;color:var(--ink-mute);
+    align-self:center;padding-right:8px;
+  }
+  @media (min-width:900px){
+    .orderbar-inner{grid-template-columns:auto 1fr 1fr;gap:16px}
+    .orderbar .label{display:block}
+  }
+  .ob-btn{
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    text-decoration:none;padding:14px 14px;border-radius:3px;
+    font-weight:600;font-size:13.5px;min-height:48px;letter-spacing:.01em;
+    transition:filter .15s ease, transform .15s ease;
+  }
+  .ob-btn:active{transform:scale(.98)}
+  .ob-btn:hover{filter:brightness(1.07)}
+  .ob-btn.c{background:var(--saffron);color:#1a1208}
+  .ob-btn.a{background:var(--ember);color:#1a0a06}
+  .ob-btn .badge-letter{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:22px;height:22px;border-radius:50%;
+    background:rgba(0,0,0,.18);color:inherit;
+    font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;
+    flex-shrink:0;
+  }
+  .ob-btn .full{display:none}
+  .ob-btn .short{display:inline}
+  @media (min-width:500px){
+    .ob-btn{font-size:14.5px;padding:14px 18px}
+    .ob-btn .full{display:inline}
+    .ob-btn .short{display:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="mark" href="Kabob Express.html">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+        <line x1="2" y1="11" x2="20" y2="11" stroke="#e6a23c" stroke-width="1.2"/>
+        <ellipse cx="7" cy="11" rx="2.4" ry="3.2" fill="none" stroke="#f3ece0" stroke-width="1.2"/>
+        <ellipse cx="12" cy="11" rx="2.4" ry="3.2" fill="none" stroke="#f3ece0" stroke-width="1.2"/>
+        <ellipse cx="17" cy="11" rx="2.4" ry="3.2" fill="none" stroke="#f3ece0" stroke-width="1.2"/>
+      </svg>
+      Kabob <em>Express</em>
+    </a>
+    <nav class="topnav">
+      <a href="Kabob Express.html">Locations</a>
+      <a href="Menu.html" aria-current="page">Menu</a>
+    </nav>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">The menu</div>
+    <h1>Kabobs, platters &amp; <em>everything</em> on the grill.</h1>
+    <p class="sub">All platters come with basmati rice, fresh tandoori bread, salad and a side dish. Portions are generous — plan accordingly.</p>
+    <div class="note">— in-store prices · tap a section to jump</div>
+  </div>
+</section>
+
+<div class="filterbar" role="navigation" aria-label="Menu sections">
+  <div class="wrap">
+    <div class="chips" id="chips">
+      <a class="chip active" href="#kabobs" data-target="kabobs">Kabob Platters</a>
+      <a class="chip" href="#combos" data-target="combos">Combos</a>
+      <a class="chip" href="#sandwiches" data-target="sandwiches">Sandwiches &amp; Gyro</a>
+      <a class="chip" href="#plates" data-target="plates">Rice &amp; Plates</a>
+      <a class="chip" href="#sides" data-target="sides">Sides &amp; Drinks</a>
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+
+    <section class="section" id="kabobs">
+      <div class="section-head">
+        <h2>Kabob Platters</h2>
+        <div class="meta">01 · Off the grill</div>
+      </div>
+      <p class="section-note">Each platter served with basmati rice, fresh tandoori bread, salad &amp; side.</p>
+      <div class="items">
+
+        <article class="item">
+          <div class="photo">
+            <span class="pop-tag">Most loved</span>
+            <img loading="lazy" alt="Kubideh kabob" src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=800&q=70">
+          </div>
+          <div class="body">
+            <div class="top"><span class="num">#1</span><span class="price">$15.99</span></div>
+            <div class="name">Kubideh Kabob</div>
+            <p class="desc">Ground sirloin and grated onion, delicately spiced and grilled over open flame.</p>
+            <div class="tags"><span>Beef</span></div>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="photo">
+            <span class="pop-tag">Most loved</span>
+            <img loading="lazy" alt="Boneless chicken kabob" src="https://images.unsplash.com/photo-1625938145312-c70a1b9f38fe?auto=format&fit=crop&w=800&q=70">
+          </div>
+          <div class="body">
+            <div class="top"><span class="num">#2</span><span class="price">$15.99</span></div>
+            <div class="name">Boneless Chicken Kabob</div>
+            <p class="desc">Skinless, fat-free chunks of chicken in our house seasoning.</p>
+            <div class="tags"><span>Chicken</span></div>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="photo">
+            <img loading="lazy" alt="Beef kabob" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=70">
+          </div>
+          <div class="body">
+            <div class="top"><span class="num">#3</span><span class="price">$16.99</span></div>
+            <div class="name">Beef Kabob</div>
+            <p class="desc">Chunks of tenderloin marinated in our special house seasoning.</p>
+            <div class="tags"><span>Beef</span></div>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="photo">
+            <img loading="lazy" alt="Lamb kabob" src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?auto=format&fit=crop&w=800&q=70">
+          </div>
+          <div class="body">
+            <div class="top"><span class="num">#4</span><span class="price">$17.99</span></div>
+            <div class="name">Lamb Kabob</div>
+            <p class="desc">Chunks of lamb marinated in our signature spice blend.</p>
+            <div class="tags"><span>Lamb</span></div>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="photo">
+            <img loading="lazy" alt="Fish kabob" src="https://images.unsplash.com/photo-1485921325833-c519f76c4927?auto=format&fit=crop&w=800&q=70">
+          </div>
+          <div class="body">
+            <div class="top"><span class="num">#5</span><span class="price">$16.99</span></div>
+            <div class="name">Fish Kabob</div>
+            <p class="desc">Chunks of fish marinated in special seasoning.</p>
+            <div class="tags"><span>Seafood</span></div>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="photo">
+            <img loading="lazy" alt="Bone-in chicken kabob" src="https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=70">
+          </div>
+          <div class="body">
+            <div class="top"><span class="num">#6</span><span class="price">$15.99</span></div>
+            <div class="name">Bone-in Chicken Kabob</div>
+            <p class="desc">Marinated on the bone for extra flavor. Juicy and rich.</p>
+            <div class="tags"><span>Chicken</span></div>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="photo">
+            <span class="pop-tag">House fav</span>
+            <img loading="lazy" alt="Chapli kabob" src="https://images.unsplash.com/photo-1633321702518-7feccafb94d5?auto=format&fit=crop&w=800&q=70">
+          </div>
+          <div class="body">
+            <div class="top"><span class="num">#7</span><span class="price">$17.99</span></div>
+            <div class="name">Chapli Kabob</div>
+            <p class="desc">Minced kebab of ground beef, flour and vegetables — pan-flattened.</p>
+            <div class="tags"><span>Beef</span></div>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="photo">
+            <img loading="lazy" alt="Lamb shank" src="https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&w=800&q=70">
+          </div>
+          <div class="body">
+            <div class="top"><span class="num">#8</span><span class="price">$18.99</span></div>
+            <div class="name">Lamb Shank</div>
+            <p class="desc">Slow-cooked until fork-tender. Served over rice.</p>
+            <div class="tags"><span>Lamb</span></div>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="photo">
+            <img loading="lazy" alt="Lamb chops" src="https://images.unsplash.com/photo-1514516870926-20598983bb60?auto=format&fit=crop&w=800&q=70">
+          </div>
+          <div class="body">
+            <div class="top"><span class="num">#13</span><span class="price">$24.99</span></div>
+            <div class="name">Lamb Chops</div>
+            <p class="desc">Marinated chops grilled to order in our special house seasoning.</p>
+            <div class="tags"><span>Lamb</span><span>Premium</span></div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section" id="combos">
+      <div class="section-head">
+        <h2>Combos</h2>
+        <div class="meta">02 · Two skewers</div>
+      </div>
+      <p class="section-note">Mix your favorites. Each combo served with rice, bread, salad &amp; side.</p>
+      <div class="items">
+
+        <article class="item">
+          <div class="photo">
+            <img loading="lazy" alt="Chicken and beef combo" src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=70">
+          </div>
+          <div class="body">
+            <div class="top"><span class="num">C1</span><span class="price">$23.99</span></div>
+            <div class="name">Chicken &amp; Beef Combo</div>
+            <p class="desc">Sirloin and chicken, marinated in our special seasoning.</p>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="photo">
+            <img loading="lazy" alt="Chicken and lamb combo" src="https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=800&q=70">
+          </div>
+          <div class="body">
+            <div class="top"><span class="num">C2</span><span class="price">$24.99</span></div>
+            <div class="name">Chicken &amp; Lamb Combo</div>
+            <p class="desc">Chunks of lamb and chicken in our house marinade.</p>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="photo">
+            <span class="pop-tag">Popular</span>
+            <img loading="lazy" alt="Chicken and kubideh combo" src="https://images.unsplash.com/photo-1623689045209-fb1fd6a83ef6?auto=format&fit=crop&w=800&q=70">
+          </div>
+          <div class="body">
+            <div class="top"><span class="num">C3</span><span class="price">$18.99</span></div>
+            <div class="name">Chicken &amp; Kubideh Combo</div>
+            <p class="desc">One skewer chicken + one skewer kubideh.</p>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="photo">
+            <img loading="lazy" alt="Chicken and two kubideh" src="https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?auto=format&fit=crop&w=800&q=70">
+          </div>
+          <div class="body">
+            <div class="top"><span class="num">C4</span><span class="price">$23.99</span></div>
+            <div class="name">1 Chicken + 2 Kubideh</div>
+            <p class="desc">For the kubideh devotees. Three skewers total.</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section" id="sandwiches">
+      <div class="section-head">
+        <h2>Sandwiches &amp; Gyro</h2>
+        <div class="meta">03 · Wrapped to go</div>
+      </div>
+      <p class="section-note">Served in fresh tandoori bread with lettuce, tomato and our house white sauce.</p>
+      <div class="items">
+
+        <article class="item">
+          <div class="photo">
+            <span class="pop-tag">Most loved</span>
+            <img loading="lazy" alt="Gyro sandwich" src="https://images.unsplash.com/photo-1530469912745-a215c6b256ea?auto=format&fit=crop&w=800&q=70">
+          </div>
+          <div class="body">
+            <div class="top"><span class="num">#10</span><span class="price">$11.99</span></div>
+            <div class="name">Gyro Sandwich</div>
+            <p class="desc">Thin-sliced gyro from the vertical rotisserie, white sauce, tandoori bread.</p>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="photo">
+            <img loading="lazy" alt="Shawarma sandwich" src="https://images.unsplash.com/photo-1561651823-34feb02250e4?auto=format&fit=crop&w=800&q=70">
+          </div>
+          <div class="body">
+            <div class="top"><span class="num">#10b</span><span class="price">$11.99</span></div>
+            <div class="name">Shawarma Sandwich</div>
+            <p class="desc">Lettuce, tomato, white sauce wrapped in fresh tandoori bread.</p>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="photo">
+            <img loading="lazy" alt="Gyro salad" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=70">
+          </div>
+          <div class="body">
+            <div class="top"><span class="num">#9</span><span class="price">$15.99</span></div>
+            <div class="name">Gyro Salad</div>
+            <p class="desc">Gyro meat over crisp greens with house dressing.</p>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="photo">
+            <img loading="lazy" alt="Gyro over rice" src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=800&q=70">
+          </div>
+          <div class="body">
+            <div class="top"><span class="num">#17</span><span class="price">$14.99</span></div>
+            <div class="name">Gyro Over Rice</div>
+            <p class="desc">Gyro served over basmati with side and bread.</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section" id="plates">
+      <div class="section-head">
+        <h2>Rice &amp; Plates</h2>
+        <div class="meta">04 · Homestyle</div>
+      </div>
+      <p class="section-note">Generous portions of our slow-cooked favorites.</p>
+      <div class="items">
+
+        <article class="item">
+          <div class="photo">
+            <img loading="lazy" alt="Falafel platter" src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=70">
+          </div>
+          <div class="body">
+            <div class="top"><span class="num">#11</span><span class="price">$18.99</span></div>
+            <div class="name">Falafel Platter</div>
+            <p class="desc">Vegetarian platter with basmati rice, salad and side.</p>
+            <div class="tags"><span>Vegetarian</span></div>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="photo">
+            <span class="pop-tag">Signature</span>
+            <img loading="lazy" alt="Qabili palau" src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=800&q=70">
+          </div>
+          <div class="body">
+            <div class="top"><span class="num">#12</span><span class="price">$18.99</span></div>
+            <div class="name">Qabili Palau</div>
+            <p class="desc">Afghan signature rice with raisins, carrots and tender meat.</p>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="photo">
+            <img loading="lazy" alt="Beef curry" src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=800&q=70">
+          </div>
+          <div class="body">
+            <div class="top"><span class="num">#14</span><span class="price">$16.99</span></div>
+            <div class="name">Beef Curry</div>
+            <p class="desc">Slow-simmered beef in aromatic curry sauce. Served with rice.</p>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="photo">
+            <img loading="lazy" alt="Chicken curry" src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=800&q=70">
+          </div>
+          <div class="body">
+            <div class="top"><span class="num">#15</span><span class="price">$15.99</span></div>
+            <div class="name">Chicken Curry</div>
+            <p class="desc">Tender chicken in a rich, spiced curry gravy.</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section" id="sides">
+      <div class="section-head">
+        <h2>Sides &amp; Drinks</h2>
+        <div class="meta">05 · Add-ons</div>
+      </div>
+      <div class="items">
+
+        <article class="item">
+          <div class="photo">
+            <img loading="lazy" alt="Chana masala" src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=800&q=70">
+          </div>
+          <div class="body">
+            <div class="top"><span class="num">S1</span><span class="price">$5.99</span></div>
+            <div class="name">Chana Masala</div>
+            <p class="desc">Chickpeas simmered in tomato and spice.</p>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="photo">
+            <img loading="lazy" alt="Sauteed spinach" src="https://images.unsplash.com/photo-1576402187878-974f70c890a5?auto=format&fit=crop&w=800&q=70">
+          </div>
+          <div class="body">
+            <div class="top"><span class="num">S2</span><span class="price">$5.99</span></div>
+            <div class="name">Sautéed Spinach</div>
+            <p class="desc">Garlicky, tender. A favorite on the buffet.</p>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="photo">
+            <img loading="lazy" alt="Tandoori bread" src="https://images.unsplash.com/photo-1584736286279-75d60b4cfc80?auto=format&fit=crop&w=800&q=70">
+          </div>
+          <div class="body">
+            <div class="top"><span class="num">S3</span><span class="price">$2.99</span></div>
+            <div class="name">Fresh Tandoori Bread</div>
+            <p class="desc">Baked in-house. Warm, blistered, huge.</p>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="photo">
+            <img loading="lazy" alt="Basmati rice" src="https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&w=800&q=70">
+          </div>
+          <div class="body">
+            <div class="top"><span class="num">S4</span><span class="price">$3.99</span></div>
+            <div class="name">White / Brown Rice</div>
+            <p class="desc">Basmati, steamed.</p>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="photo">
+            <img loading="lazy" alt="Fountain drink" src="https://images.unsplash.com/photo-1581636625402-29b2a704ef13?auto=format&fit=crop&w=800&q=70">
+          </div>
+          <div class="body">
+            <div class="top"><span class="num">D1</span><span class="price">$2.49</span></div>
+            <div class="name">Fountain Drink</div>
+            <p class="desc">Assorted sodas.</p>
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="photo">
+            <img loading="lazy" alt="Mango lassi" src="https://images.unsplash.com/photo-1571950006418-f226dc106482?auto=format&fit=crop&w=800&q=70">
+          </div>
+          <div class="body">
+            <div class="top"><span class="num">D2</span><span class="price">$4.49</span></div>
+            <div class="name">Mango Lassi</div>
+            <p class="desc">Creamy yogurt drink, lightly sweetened.</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>© Kabob Express · Centreville &amp; Alexandria, VA</div>
+    <div>Menu &amp; prices subject to change</div>
+  </div>
+</footer>
+
+<div class="orderbar" role="region" aria-label="Order online">
+  <div class="orderbar-inner">
+    <div class="label">Order now</div>
+    <a class="ob-btn c" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">
+      <span class="badge-letter">C</span><span class="full">Centreville</span><span class="short">Order Now</span>
+    </a>
+    <a class="ob-btn a" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=65dd577c-bd54-4459-afe8-dd9417913976" target="_blank" rel="noopener">
+      <span class="badge-letter">A</span><span class="full">Alexandria</span><span class="short">Order Now</span>
+    </a>
+  </div>
+</div>
+
+<script>
+  (function(){
+    const chipsEl  = document.getElementById('chips');
+    const chips    = [...document.querySelectorAll('.chip')];
+    const sections = [...document.querySelectorAll('.section[id]')];
+
+    // helper: compute the sticky offset (topbar + filterbar) dynamically
+    function stickyOffset(){
+      const top = document.querySelector('.topbar');
+      const flt = document.querySelector('.filterbar');
+      return (top ? top.offsetHeight : 0) + (flt ? flt.offsetHeight : 0) + 12;
+    }
+
+    // smooth-scroll on chip click
+    chips.forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const id = a.dataset.target;
+        const el = document.getElementById(id);
+        if(!el) return;
+        const y = el.getBoundingClientRect().top + window.scrollY - stickyOffset();
+        window.scrollTo({top:y, behavior:'smooth'});
+        setActive(id);
+        centerChipInBar(a);
+      });
+    });
+
+    function setActive(id){
+      chips.forEach(c => c.classList.toggle('active', c.dataset.target === id));
+    }
+
+    // scroll the horizontal chip bar (not the page!) to keep active chip visible
+    function centerChipInBar(chip){
+      if(!chipsEl || !chip) return;
+      const barRect = chipsEl.getBoundingClientRect();
+      const chipRect = chip.getBoundingClientRect();
+      const target = chipsEl.scrollLeft + (chipRect.left - barRect.left) - (barRect.width/2 - chipRect.width/2);
+      chipsEl.scrollTo({left: Math.max(0, target), behavior:'smooth'});
+    }
+
+    // scroll-spy: pick the section whose top is closest above the offset line
+    function onScroll(){
+      const offset = stickyOffset() + 10;
+      let currentId = sections[0] && sections[0].id;
+      for(const s of sections){
+        const top = s.getBoundingClientRect().top;
+        if(top - offset <= 0) currentId = s.id;
+        else break;
+      }
+      const activeChip = chips.find(c => c.classList.contains('active'));
+      if(activeChip && activeChip.dataset.target === currentId) return;
+      setActive(currentId);
+      const newActive = chips.find(c => c.dataset.target === currentId);
+      if(newActive) centerChipInBar(newActive);
+    }
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if(!ticking){
+        requestAnimationFrame(() => { onScroll(); ticking = false; });
+        ticking = true;
+      }
+    }, {passive:true});
+    onScroll();
+  })();
+</script>
+
+</body>
+</html>
