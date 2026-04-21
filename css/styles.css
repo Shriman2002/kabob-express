@@ -319,6 +319,8 @@ p  { max-width: 60ch; }
   padding: 0.5rem 0;
   transition: color 0.2s ease;
 }
+/* Mobile-only handwritten sub-label under each nav link — hidden on desktop */
+.nav-sublabel { display: none; }
 /* Saffron animated underline */
 .nav-links a:not(.btn)::after {
   content: "";
@@ -1282,8 +1284,8 @@ body.mobile-nav-open .hamburger span:nth-child(3) { transform: translateY(-7px) 
   .nav-links.open li:nth-child(4) a { animation-delay: 200ms; }
   @keyframes nav-stagger { to { opacity: 1; transform: translateY(0); } }
 
-  /* Mobile nav sub-labels in Caveat below each link */
-  .nav-sublabel {
+  /* Mobile nav sub-labels in Caveat below each link (override desktop hide) */
+  .nav-links.open .nav-sublabel {
     display: block;
     font-family: 'Caveat', cursive;
     font-size: 1rem;
