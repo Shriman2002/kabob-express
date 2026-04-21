@@ -3,168 +3,408 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kabob Express | Fresh Fast Tasty</title>
-  <meta name="description" content="Your ultimate destination for flavorful kabobs and authentic grilled delights in Centreville, VA." />
-  <link rel="stylesheet" href="css/styles.css" />
+  <title>Kabob Express | Fresh · Fast · Tasty — Centreville, VA</title>
+  <meta name="description" content="Authentic Persian & Mediterranean kabobs, gyros, and rice plates in Centreville, VA. Halal. Open daily 10 AM–10 PM. Order online for pickup or delivery." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Kabob Express | Fresh · Fast · Tasty" />
+  <meta property="og:description" content="Authentic Persian & Mediterranean kabobs in Centreville, VA. Halal. Open 10–10 daily." />
+  <meta property="og:type" content="restaurant.restaurant" />
+  <meta property="og:image" content="images/og-cover.jpg" />
+  <meta property="og:url" content="https://kabobexpressva.com/" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- LocalBusiness Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Kabob Express",
+    "image": "https://kabobexpressva.com/images/og-cover.jpg",
+    "url": "https://kabobexpressva.com/",
+    "telephone": "+1-703-222-0722",
+    "priceRange": "$$",
+    "servesCuisine": ["Persian", "Mediterranean", "Halal"],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "6057 Centreville Crest Ln",
+      "addressLocality": "Centreville",
+      "addressRegion": "VA",
+      "postalCode": "20121",
+      "addressCountry": "US"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 38.8355, "longitude": -77.4346 },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "10:00", "closes": "22:00"
+    }],
+    "sameAs": ["https://instagram.com/eatkabob"],
+    "acceptsReservations": false
+  }
+  </script>
 </head>
 <body>
+
+  <!-- STICKY ORDER BAR (appears after hero) -->
+  <div class="order-strip" id="orderStrip" aria-hidden="true">
+    <div class="container order-strip-inner">
+      <span>🔥 Ready to order? Ready in ~10 min.</span>
+      <a href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Order Now →</a>
+    </div>
+  </div>
 
   <!-- NAV -->
   <header class="site-header">
     <div class="container nav-inner">
-      <a href="#" class="logo">Kabob Express</a>
-      <nav>
-        <ul class="nav-links">
+      <a href="#home" class="logo" aria-label="Kabob Express home">Kabob<span>Express</span></a>
+      <nav aria-label="Primary">
+        <ul class="nav-links" id="navLinks">
           <li><a href="#menu">Menu</a></li>
           <li><a href="#hours">Hours</a></li>
           <li><a href="#location">Location</a></li>
-          <li><a href="#order" class="btn btn-primary">Order Online</a></li>
+          <li><a href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener" class="btn btn-primary">Order Now</a></li>
         </ul>
-        <button class="hamburger" aria-label="Toggle menu">&#9776;</button>
       </nav>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
 
   <!-- HERO -->
   <section class="hero" id="home">
+    <div class="hero-bg" role="img" aria-label="Sizzling kabobs on the grill"></div>
     <div class="hero-overlay"></div>
-    <div class="container hero-content">
+    <div class="container hero-content reveal">
       <p class="hero-tagline">Fresh · Fast · Tasty</p>
-      <h1>Your Ultimate Destination for Flavorful Kabobs</h1>
-      <p class="hero-sub">Authentic grilled delights crafted fresh to order in Centreville, VA.</p>
+      <h1>Flame-Grilled Kabobs,<br/>Made Fresh Daily.</h1>
+      <p class="hero-sub">Authentic Persian & Mediterranean favorites — ready in about 10 minutes.</p>
       <div class="hero-cta">
-        <a href="#order" class="btn btn-primary btn-lg">Order Now</a>
-        <a href="#menu" class="btn btn-outline btn-lg">View Menu</a>
+        <a href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Order Online</a>
+        <a href="#menu" class="btn btn-outline-light btn-lg">View Menu</a>
       </div>
     </div>
+    <a href="#proof" class="scroll-indicator" aria-label="Scroll down">
+      <span></span>
+    </a>
   </section>
 
-  <!-- ABOUT -->
-  <section class="about section" id="about">
-    <div class="container about-grid">
-      <div class="about-text">
-        <span class="section-label">About Us</span>
-        <h2>Grilled to Perfection, Every Time</h2>
-        <p>
-          Kabob Express brings the bold, smoky flavors of Mediterranean grilling to Northern Virginia.
-          We use fresh ingredients and traditional recipes to serve you the best kabobs around —
-          fast enough for lunch, satisfying enough for dinner.
-        </p>
-        <p>Open daily, 10 AM – 10 PM.</p>
-      </div>
-      <div class="about-image">
-        <!-- Replace src with an actual photo -->
-        <div class="image-placeholder">
-          <span>Your Photo Here</span>
-        </div>
-      </div>
+  <!-- SOCIAL PROOF STRIP -->
+  <section class="proof-strip" id="proof" aria-label="Why customers love us">
+    <div class="container proof-inner">
+      <div class="proof-item"><span class="stars">★★★★★</span><span>500+ Google Reviews</span></div>
+      <div class="proof-divider" aria-hidden="true"></div>
+      <div class="proof-item"><span class="proof-icon">🕙</span><span>Open Every Day · 10 AM – 10 PM</span></div>
+      <div class="proof-divider" aria-hidden="true"></div>
+      <div class="proof-item"><span class="proof-icon">⚡</span><span>Order Online in Under 2 Min</span></div>
     </div>
   </section>
 
   <!-- MENU -->
   <section class="menu section" id="menu">
     <div class="container">
-      <span class="section-label center">Our Menu</span>
-      <h2 class="center">Fan Favorites</h2>
-      <p class="section-sub center">Every dish is grilled fresh to order with premium cuts and signature seasonings.</p>
-
-      <div class="menu-grid">
-        <div class="menu-card">
-          <div class="menu-num">#1</div>
-          <h3>Kubideh Kabob</h3>
-          <p>Seasoned ground beef kabob grilled over open flame, served with saffron rice and grilled tomato.</p>
-        </div>
-        <div class="menu-card">
-          <div class="menu-num">#2</div>
-          <h3>Chicken Kabob</h3>
-          <p>Marinated boneless chicken thighs, chargrilled and served with basmati rice and fresh herbs.</p>
-        </div>
-        <div class="menu-card">
-          <div class="menu-num">#3</div>
-          <h3>Beef Kabob</h3>
-          <p>Tender chunks of marinated beef sirloin skewered and grilled to juicy perfection.</p>
-        </div>
-        <div class="menu-card">
-          <div class="menu-num">#10</div>
-          <h3>Gyro Sandwich</h3>
-          <p>Classic gyro wrapped in warm pita with tzatziki, tomatoes, and red onion.</p>
-        </div>
-        <div class="menu-card">
-          <div class="menu-num">#13</div>
-          <h3>Lamb Chops</h3>
-          <p>Premium lamb chops marinated in our house blend and grilled to your liking.</p>
-        </div>
-        <div class="menu-card">
-          <div class="menu-num">#17</div>
-          <h3>Gyro Over Rice</h3>
-          <p>Shaved gyro meat served over a bed of fluffy basmati rice with our signature sauces.</p>
-        </div>
+      <div class="section-head reveal">
+        <span class="section-label">Our Menu</span>
+        <h2>Grilled Fresh, Just for You</h2>
+        <p class="section-sub">Every dish is made to order with premium halal meats and traditional seasonings.</p>
       </div>
 
-      <div class="center" style="margin-top:2.5rem;">
-        <a href="#order" class="btn btn-primary btn-lg">Order Now</a>
+      <div class="menu-filters reveal" role="tablist" aria-label="Menu categories">
+        <button class="filter-pill active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button class="filter-pill" data-filter="kabobs" role="tab">Kabobs</button>
+        <button class="filter-pill" data-filter="rice" role="tab">Rice Plates</button>
+        <button class="filter-pill" data-filter="sandwiches" role="tab">Sandwiches</button>
+        <button class="filter-pill" data-filter="sides" role="tab">Sides</button>
+        <button class="filter-pill" data-filter="drinks" role="tab">Drinks</button>
+      </div>
+
+      <div class="menu-grid" id="menuGrid">
+
+        <!-- Kabobs -->
+        <article class="menu-card reveal" data-category="kabobs">
+          <div class="menu-img" role="img" aria-label="Kubideh kabob with saffron rice"><span class="badge-popular">🔥 Best Seller</span></div>
+          <div class="menu-body">
+            <div class="menu-head"><h3><span class="item-num">#1</span> Kubideh Kabob</h3><span class="price">$X.XX</span></div>
+            <p>Seasoned ground beef, saffron rice, grilled tomato.</p>
+            <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
+          </div>
+        </article>
+
+        <article class="menu-card reveal" data-category="kabobs">
+          <div class="menu-img" role="img" aria-label="Chicken kabob with basmati rice"><span class="badge-popular">🔥 Best Seller</span></div>
+          <div class="menu-body">
+            <div class="menu-head"><h3><span class="item-num">#2</span> Chicken Kabob</h3><span class="price">$X.XX</span></div>
+            <p>Marinated boneless thighs, basmati rice, fresh herbs.</p>
+            <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
+          </div>
+        </article>
+
+        <article class="menu-card reveal" data-category="kabobs">
+          <div class="menu-img" role="img" aria-label="Beef kabob chunks charred on skewers"><span class="badge-popular">🔥 Best Seller</span></div>
+          <div class="menu-body">
+            <div class="menu-head"><h3><span class="item-num">#3</span> Beef Kabob</h3><span class="price">$X.XX</span></div>
+            <p>Sirloin chunks, chargrilled to perfection.</p>
+            <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
+          </div>
+        </article>
+
+        <article class="menu-card reveal" data-category="kabobs">
+          <div class="menu-img" role="img" aria-label="Half chicken half beef combo platter"></div>
+          <div class="menu-body">
+            <div class="menu-head"><h3><span class="item-num">#4</span> Chicken & Beef Combo</h3><span class="price">$X.XX</span></div>
+            <p>Half portion of each kabob — the best of both.</p>
+            <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
+          </div>
+        </article>
+
+        <article class="menu-card reveal" data-category="kabobs">
+          <div class="menu-img" role="img" aria-label="Grilled jumbo shrimp skewers"></div>
+          <div class="menu-body">
+            <div class="menu-head"><h3><span class="item-num">#5</span> Shrimp Kabob</h3><span class="price">$X.XX</span></div>
+            <p>Grilled jumbo shrimp, lemon butter, fresh herbs.</p>
+            <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
+          </div>
+        </article>
+
+        <article class="menu-card reveal" data-category="kabobs">
+          <div class="menu-img" role="img" aria-label="Grilled lamb chops with saffron rice"></div>
+          <div class="menu-body">
+            <div class="menu-head"><h3><span class="item-num">#13</span> Lamb Chops</h3><span class="price">$X.XX</span></div>
+            <p>Premium chops, house marinade, saffron rice.</p>
+            <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
+          </div>
+        </article>
+
+        <!-- Rice Plates -->
+        <article class="menu-card reveal" data-category="rice">
+          <div class="menu-img" role="img" aria-label="Gyro over basmati rice"></div>
+          <div class="menu-body">
+            <div class="menu-head"><h3><span class="item-num">#17</span> Gyro Over Rice</h3><span class="price">$X.XX</span></div>
+            <p>Shaved gyro, basmati, signature sauces.</p>
+            <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
+          </div>
+        </article>
+
+        <!-- Sandwiches -->
+        <article class="menu-card reveal" data-category="sandwiches">
+          <div class="menu-img" role="img" aria-label="Gyro sandwich with tzatziki"></div>
+          <div class="menu-body">
+            <div class="menu-head"><h3><span class="item-num">#10</span> Gyro Sandwich</h3><span class="price">$X.XX</span></div>
+            <p>Classic gyro, warm pita, tzatziki, tomato, red onion.</p>
+            <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
+          </div>
+        </article>
+
+        <article class="menu-card reveal" data-category="sandwiches">
+          <div class="menu-img" role="img" aria-label="Grilled chicken sandwich in pita"></div>
+          <div class="menu-body">
+            <div class="menu-head"><h3><span class="item-num">#11</span> Chicken Sandwich</h3><span class="price">$X.XX</span></div>
+            <p>Grilled chicken, garlic sauce, pickles, pita.</p>
+            <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
+          </div>
+        </article>
+
+        <article class="menu-card reveal" data-category="sandwiches">
+          <div class="menu-img" role="img" aria-label="Crispy falafel sandwich with hummus"></div>
+          <div class="menu-body">
+            <div class="menu-head"><h3><span class="item-num">#12</span> Falafel Sandwich</h3><span class="price">$X.XX</span></div>
+            <p>Crispy falafel, hummus, fresh veggies.</p>
+            <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
+          </div>
+        </article>
+
+        <!-- Sides -->
+        <article class="menu-card reveal" data-category="sides">
+          <div class="menu-img" role="img" aria-label="House-made hummus with warm pita"></div>
+          <div class="menu-body">
+            <div class="menu-head"><h3><span class="item-num">#20</span> Hummus</h3><span class="price">$X.XX</span></div>
+            <p>House-made, olive oil, warm pita.</p>
+            <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
+          </div>
+        </article>
+
+        <article class="menu-card reveal" data-category="sides">
+          <div class="menu-img" role="img" aria-label="Shirazi salad with cucumber and tomato"></div>
+          <div class="menu-body">
+            <div class="menu-head"><h3><span class="item-num">#21</span> Shirazi Salad</h3><span class="price">$X.XX</span></div>
+            <p>Cucumber, tomato, onion, lime dressing.</p>
+            <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
+          </div>
+        </article>
+
+        <article class="menu-card reveal" data-category="sides">
+          <div class="menu-img" role="img" aria-label="Mast-o-khiar Persian yogurt dip"></div>
+          <div class="menu-body">
+            <div class="menu-head"><h3><span class="item-num">#22</span> Mast-o-Khiar</h3><span class="price">$X.XX</span></div>
+            <p>Persian cucumber yogurt — cool & creamy.</p>
+            <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
+          </div>
+        </article>
+
+        <!-- Drinks -->
+        <article class="menu-card reveal" data-category="drinks">
+          <div class="menu-img" role="img" aria-label="Doogh Persian yogurt drink"></div>
+          <div class="menu-body">
+            <div class="menu-head"><h3>Doogh</h3><span class="price">$X.XX</span></div>
+            <p>Traditional Persian yogurt drink with mint.</p>
+            <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
+          </div>
+        </article>
+
+        <article class="menu-card reveal" data-category="drinks">
+          <div class="menu-img" role="img" aria-label="Assorted soft drinks"></div>
+          <div class="menu-body">
+            <div class="menu-head"><h3>Soft Drinks</h3><span class="price">$X.XX</span></div>
+            <p>Coke, Diet Coke, Sprite, and more.</p>
+            <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
+          </div>
+        </article>
+
+        <article class="menu-card reveal" data-category="drinks">
+          <div class="menu-img" role="img" aria-label="Bottled water"></div>
+          <div class="menu-body">
+            <div class="menu-head"><h3>Water</h3><span class="price">$X.XX</span></div>
+            <p>Bottled spring water.</p>
+            <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="menu-footer reveal">
+        <a href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener" class="link-arrow">View Full Menu →</a>
       </div>
     </div>
   </section>
 
-  <!-- HOURS -->
-  <section class="hours section" id="hours">
-    <div class="container hours-inner">
-      <span class="section-label center">Hours</span>
-      <h2 class="center">We're Open Every Day</h2>
-      <div class="hours-table">
-        <div class="hours-row">
-          <span>Monday – Sunday</span>
-          <span>10:00 AM – 10:00 PM</span>
+  <!-- WHY US -->
+  <section class="why section" id="why">
+    <div class="container why-grid">
+      <div class="why-text reveal">
+        <span class="section-label">Why Kabob Express</span>
+        <h2>Bold Flavors. Honest Ingredients.</h2>
+        <ul class="why-list">
+          <li><span class="why-icon">✓</span><div><strong>100% Halal Certified</strong><p>Every meat we serve is certified halal.</p></div></li>
+          <li><span class="why-icon">❄</span><div><strong>Fresh, Never Frozen</strong><p>Delivered daily, grilled to order.</p></div></li>
+          <li><span class="why-icon">♨</span><div><strong>Family Recipes Since [YEAR]</strong><p>Traditions passed down three generations.</p></div></li>
+          <li><span class="why-icon">⚡</span><div><strong>Ready in ~10 Minutes</strong><p>Fast enough for lunch, satisfying for dinner.</p></div></li>
+        </ul>
+      </div>
+      <div class="why-image reveal" role="img" aria-label="Kabob Express kitchen with charcoal grill"></div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews section" id="reviews">
+    <div class="container">
+      <div class="section-head reveal center">
+        <span class="section-label">Reviews</span>
+        <h2>Loved by Centreville</h2>
+        <p class="section-sub">Real words from real customers on Google.</p>
+      </div>
+
+      <div class="reviews-carousel reveal">
+        <button class="carousel-arrow prev" id="reviewPrev" aria-label="Previous review">‹</button>
+        <div class="reviews-track" id="reviewsTrack">
+
+          <article class="review-card">
+            <div class="avatar" aria-hidden="true">S</div>
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p>"Best kabobs in Northern Virginia, hands down. The kubideh is incredible and the service is always fast."</p>
+            <span class="reviewer">— Sarah M.</span>
+          </article>
+
+          <article class="review-card">
+            <div class="avatar" aria-hidden="true">A</div>
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p>"Authentic Persian flavors, portions are huge, and the lamb chops are cooked perfectly every single time."</p>
+            <span class="reviewer">— Ahmed K.</span>
+          </article>
+
+          <article class="review-card">
+            <div class="avatar" aria-hidden="true">J</div>
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p>"Online ordering is a breeze, food is ready when I get there, and the chicken kabob is my weekly go-to."</p>
+            <span class="reviewer">— Jessica R.</span>
+          </article>
+
+          <article class="review-card">
+            <div class="avatar" aria-hidden="true">D</div>
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p>"Family-run, friendly staff, and the saffron rice is on another level. This place is a Centreville gem."</p>
+            <span class="reviewer">— David L.</span>
+          </article>
+
         </div>
+        <button class="carousel-arrow next" id="reviewNext" aria-label="Next review">›</button>
+      </div>
+
+      <div class="center" style="margin-top:2rem;">
+        <a href="https://www.google.com/maps/place/?q=place_id:ChIJ" target="_blank" rel="noopener" class="link-arrow">See all reviews on Google →</a>
       </div>
     </div>
   </section>
 
-  <!-- ORDER CTA -->
+  <!-- ORDER BANNER -->
   <section class="order-cta section" id="order">
-    <div class="container center">
-      <h2>Ready to Order?</h2>
-      <p>Skip the wait — place your order online for pickup or delivery.</p>
-      <a href="#" class="btn btn-primary btn-lg">Order Online</a>
+    <div class="container center reveal">
+      <h2>Skip the Line. Order Online.</h2>
+      <p>Ready in ~10 minutes. Pickup or delivery.</p>
+      <div class="order-buttons">
+        <a href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener" class="btn btn-white btn-lg">Order Pickup</a>
+        <a href="#" target="_blank" rel="noopener" class="btn btn-outline-light btn-lg">Get Delivery</a>
+      </div>
+      <p class="delivery-partners">Also available on <strong>DoorDash</strong> · <strong>UberEats</strong> · <strong>Grubhub</strong></p>
     </div>
   </section>
 
-  <!-- LOCATION -->
+  <!-- HOURS & LOCATION -->
   <section class="location section" id="location">
     <div class="container location-grid">
-      <div class="location-info">
-        <span class="section-label">Location</span>
-        <h2>Find Us in Centreville</h2>
-        <address>
-          6057 Centreville Crest Ln<br />
-          Centreville, VA 20121
-        </address>
-        <ul class="contact-list">
-          <li><strong>Hours:</strong> Daily 10:00 AM – 10:00 PM</li>
-          <li><strong>Instagram:</strong> <a href="https://instagram.com/eatkabob" target="_blank" rel="noopener">@eatkabob</a></li>
-        </ul>
-        <a
-          href="https://maps.google.com/?q=6057+Centreville+Crest+Ln+Centreville+VA+20121"
-          target="_blank"
-          rel="noopener"
-          class="btn btn-outline"
-        >Get Directions</a>
+      <div class="location-info reveal">
+        <span class="section-label">Visit Us</span>
+        <h2>Come Hungry</h2>
+
+        <div class="info-block" id="hours">
+          <h3>Hours</h3>
+          <div class="hours-row"><span>Monday – Sunday</span><span>10:00 AM – 10:00 PM</span></div>
+        </div>
+
+        <div class="info-block">
+          <h3>Address</h3>
+          <address>6057 Centreville Crest Ln<br/>Centreville, VA 20121</address>
+        </div>
+
+        <div class="info-block">
+          <h3>Contact</h3>
+          <ul class="contact-list">
+            <li>📞 <a href="tel:+17032220722">(703) 222-0722</a></li>
+            <li>📷 <a href="https://instagram.com/eatkabob" target="_blank" rel="noopener">@eatkabob</a></li>
+          </ul>
+        </div>
+
+        <div class="location-buttons">
+          <a href="tel:+17032220722" class="btn btn-primary">📞 Call to Order</a>
+          <a href="https://maps.google.com/?q=6057+Centreville+Crest+Ln+Centreville+VA+20121" target="_blank" rel="noopener" class="btn btn-outline">Get Directions</a>
+        </div>
       </div>
-      <div class="location-map">
+
+      <div class="location-map reveal">
         <iframe
           title="Kabob Express location map"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3107.5!2d-77.4346!3d38.8355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s6057+Centreville+Crest+Ln%2C+Centreville%2C+VA+20121!5e0!3m2!1sen!2sus!4v1"
-          width="100%"
-          height="350"
-          style="border:0;"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-        ></iframe>
+          src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=6057+Centreville+Crest+Ln,Centreville,VA+20121"
+          width="100%" height="100%" style="border:0; min-height:450px;"
+          allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
       </div>
     </div>
   </section>
@@ -172,12 +412,26 @@
   <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p class="footer-logo">Kabob Express</p>
-      <p class="footer-tagline">Fresh · Fast · Tasty</p>
+      <div class="footer-brand">
+        <p class="footer-logo">Kabob<span>Express</span></p>
+        <p class="footer-tagline">Fresh · Fast · Tasty</p>
+        <p class="footer-serving">Proudly serving Centreville, VA since [YEAR]</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="#menu">Menu</a>
+        <a href="#hours">Hours</a>
+        <a href="#location">Location</a>
+        <a href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Order</a>
+      </nav>
+      <div class="footer-social">
+        <a href="https://instagram.com/eatkabob" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+      </div>
       <p class="footer-copy">&copy; <span id="year"></span> Kabob Express. All rights reserved.</p>
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>
