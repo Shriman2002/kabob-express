@@ -2,7 +2,9 @@
 <!--
   Kabob Express — index.html (Rustic Bazaar Redesign)
   Values to swap in:
-    • All $X.XX price placeholders on menu cards
+    • Confirm placeholder prices on menu cards match current Foodbooking prices
+    • Replace loremflickr.com photo URLs with real product photos in images/
+      (current URLs pull representative stock food photos by keyword)
     • [YEAR] in About / Est. note / footer with real founding year
     • Google Maps iframe: replace YOUR_API_KEY with a real Maps Embed API key
     • Foodbooking per-item deep-link pattern — see buildOrderUrl() in js/main.js
@@ -98,7 +100,12 @@
        HERO — warm gradient, steam, ember glow, Caveat scrawl
   ============================================================ -->
   <section class="hero" id="home">
-    <div class="hero-bg" role="img" aria-label="Sizzling kabobs on the grill"></div>
+    <div class="hero-bg"
+         style="background-image:
+           linear-gradient(135deg, rgba(20,16,8,0.72) 0%, rgba(139,26,26,0.55) 45%, rgba(214,58,30,0.45) 100%),
+           url('https://loremflickr.com/1600/900/kebab,grill,fire?lock=10');
+           background-size: cover; background-position: center;"
+         role="img" aria-label="Sizzling kabobs on the grill"></div>
     <div class="hero-overlay"></div>
 
     <!-- Animated steam rising from bottom-left -->
@@ -208,6 +215,7 @@
       </div>
       <div class="why-image-wrap reveal" style="--i:1">
         <div class="why-image"
+             style="background-image: url('https://loremflickr.com/800/800/persian,restaurant,grill?lock=11');"
              role="img" aria-label="Kabob Express kitchen with charcoal grill"></div>
         <span class="why-est-note">est. [YEAR]</span>
       </div>
@@ -242,14 +250,16 @@
           <a class="menu-card" data-item="kubideh"
              href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15"
              target="_blank" rel="noopener" aria-label="Order Kubideh Kabob on Foodbooking">
-            <div class="menu-img" role="img" aria-label="Kubideh kabob with saffron rice">
+            <div class="menu-img"
+                 style="background-image: url('https://loremflickr.com/640/360/kabob,ground-beef?lock=1');"
+                 role="img" aria-label="Kubideh kabob with saffron rice">
               <span class="badge-popular">chef's pick</span>
               <span class="menu-img-emoji" aria-hidden="true">🍢</span>
             </div>
             <div class="menu-body">
               <div class="menu-head">
                 <h3>Kubideh Kabob</h3>
-                <span class="price">$X.XX</span>
+                <span class="price">$14.99</span>
               </div>
               <p>Seasoned ground beef, saffron rice, grilled tomato.</p>
             </div>
@@ -261,14 +271,16 @@
           <a class="menu-card" data-item="chicken-kabob"
              href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15"
              target="_blank" rel="noopener" aria-label="Order Chicken Kabob on Foodbooking">
-            <div class="menu-img" role="img" aria-label="Chicken kabob with basmati rice">
+            <div class="menu-img"
+                 style="background-image: url('https://loremflickr.com/640/360/chicken,kebab?lock=2');"
+                 role="img" aria-label="Chicken kabob with basmati rice">
               <span class="badge-popular">chef's pick</span>
               <span class="menu-img-emoji" aria-hidden="true">🍗</span>
             </div>
             <div class="menu-body">
               <div class="menu-head">
                 <h3>Chicken Kabob</h3>
-                <span class="price">$X.XX</span>
+                <span class="price">$15.99</span>
               </div>
               <p>Marinated boneless thighs, basmati rice, fresh herbs.</p>
             </div>
@@ -280,14 +292,16 @@
           <a class="menu-card" data-item="beef-kabob"
              href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15"
              target="_blank" rel="noopener" aria-label="Order Beef Kabob on Foodbooking">
-            <div class="menu-img" role="img" aria-label="Beef kabob chunks charred on skewers">
+            <div class="menu-img"
+                 style="background-image: url('https://loremflickr.com/640/360/beef,kabob,grill?lock=3');"
+                 role="img" aria-label="Beef kabob chunks charred on skewers">
               <span class="badge-popular">chef's pick</span>
               <span class="menu-img-emoji" aria-hidden="true">🥩</span>
             </div>
             <div class="menu-body">
               <div class="menu-head">
                 <h3>Beef Kabob</h3>
-                <span class="price">$X.XX</span>
+                <span class="price">$18.99</span>
               </div>
               <p>Sirloin chunks, chargrilled to perfection.</p>
             </div>
@@ -299,13 +313,15 @@
           <a class="menu-card" data-item="combo-kabob"
              href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15"
              target="_blank" rel="noopener" aria-label="Order Chicken and Beef Combo on Foodbooking">
-            <div class="menu-img" role="img" aria-label="Half chicken half beef combo platter">
+            <div class="menu-img"
+                 style="background-image: url('https://loremflickr.com/640/360/kebab,platter?lock=4');"
+                 role="img" aria-label="Half chicken half beef combo platter">
               <span class="menu-img-emoji" aria-hidden="true">🍽️</span>
             </div>
             <div class="menu-body">
               <div class="menu-head">
                 <h3>Chicken &amp; Beef Combo</h3>
-                <span class="price">$X.XX</span>
+                <span class="price">$19.99</span>
               </div>
               <p>Half portion of each kabob — the best of both.</p>
             </div>
@@ -317,13 +333,15 @@
           <a class="menu-card" data-item="shrimp-kabob"
              href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15"
              target="_blank" rel="noopener" aria-label="Order Shrimp Kabob on Foodbooking">
-            <div class="menu-img" role="img" aria-label="Grilled jumbo shrimp skewers">
+            <div class="menu-img"
+                 style="background-image: url('https://loremflickr.com/640/360/shrimp,grilled?lock=5');"
+                 role="img" aria-label="Grilled jumbo shrimp skewers">
               <span class="menu-img-emoji" aria-hidden="true">🦐</span>
             </div>
             <div class="menu-body">
               <div class="menu-head">
                 <h3>Shrimp Kabob</h3>
-                <span class="price">$X.XX</span>
+                <span class="price">$18.99</span>
               </div>
               <p>Grilled jumbo shrimp, lemon butter, fresh herbs.</p>
             </div>
@@ -335,13 +353,15 @@
           <a class="menu-card" data-item="lamb-chops"
              href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15"
              target="_blank" rel="noopener" aria-label="Order Lamb Chops on Foodbooking">
-            <div class="menu-img" role="img" aria-label="Grilled lamb chops with saffron rice">
+            <div class="menu-img"
+                 style="background-image: url('https://loremflickr.com/640/360/lamb,chops?lock=6');"
+                 role="img" aria-label="Grilled lamb chops with saffron rice">
               <span class="menu-img-emoji" aria-hidden="true">🍖</span>
             </div>
             <div class="menu-body">
               <div class="menu-head">
                 <h3>Lamb Chops</h3>
-                <span class="price">$X.XX</span>
+                <span class="price">$28.99</span>
               </div>
               <p>Premium chops, house marinade, saffron rice.</p>
             </div>
@@ -354,13 +374,15 @@
           <a class="menu-card" data-item="gyro-rice"
              href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15"
              target="_blank" rel="noopener" aria-label="Order Gyro Over Rice on Foodbooking">
-            <div class="menu-img" role="img" aria-label="Gyro over basmati rice">
+            <div class="menu-img"
+                 style="background-image: url('https://loremflickr.com/640/360/gyro,rice?lock=7');"
+                 role="img" aria-label="Gyro over basmati rice">
               <span class="menu-img-emoji" aria-hidden="true">🍚</span>
             </div>
             <div class="menu-body">
               <div class="menu-head">
                 <h3>Gyro Over Rice</h3>
-                <span class="price">$X.XX</span>
+                <span class="price">$13.99</span>
               </div>
               <p>Shaved gyro, basmati, signature sauces.</p>
             </div>
@@ -373,13 +395,15 @@
           <a class="menu-card" data-item="gyro-sandwich"
              href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15"
              target="_blank" rel="noopener" aria-label="Order Gyro Sandwich on Foodbooking">
-            <div class="menu-img" role="img" aria-label="Gyro sandwich with tzatziki">
+            <div class="menu-img"
+                 style="background-image: url('https://loremflickr.com/640/360/gyro,sandwich?lock=8');"
+                 role="img" aria-label="Gyro sandwich with tzatziki">
               <span class="menu-img-emoji" aria-hidden="true">🌯</span>
             </div>
             <div class="menu-body">
               <div class="menu-head">
                 <h3>Gyro Sandwich</h3>
-                <span class="price">$X.XX</span>
+                <span class="price">$10.99</span>
               </div>
               <p>Classic gyro, warm pita, tzatziki, tomato, red onion.</p>
             </div>
@@ -391,13 +415,15 @@
           <a class="menu-card" data-item="chicken-sandwich"
              href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15"
              target="_blank" rel="noopener" aria-label="Order Chicken Sandwich on Foodbooking">
-            <div class="menu-img" role="img" aria-label="Grilled chicken sandwich in pita">
+            <div class="menu-img"
+                 style="background-image: url('https://loremflickr.com/640/360/chicken,pita,sandwich?lock=9');"
+                 role="img" aria-label="Grilled chicken sandwich in pita">
               <span class="menu-img-emoji" aria-hidden="true">🥙</span>
             </div>
             <div class="menu-body">
               <div class="menu-head">
                 <h3>Chicken Sandwich</h3>
-                <span class="price">$X.XX</span>
+                <span class="price">$10.99</span>
               </div>
               <p>Grilled chicken, garlic sauce, pickles, pita.</p>
             </div>
@@ -409,13 +435,15 @@
           <a class="menu-card" data-item="falafel-sandwich"
              href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15"
              target="_blank" rel="noopener" aria-label="Order Falafel Sandwich on Foodbooking">
-            <div class="menu-img" role="img" aria-label="Crispy falafel sandwich with hummus">
+            <div class="menu-img"
+                 style="background-image: url('https://loremflickr.com/640/360/falafel,sandwich?lock=12');"
+                 role="img" aria-label="Crispy falafel sandwich with hummus">
               <span class="menu-img-emoji" aria-hidden="true">🧆</span>
             </div>
             <div class="menu-body">
               <div class="menu-head">
                 <h3>Falafel Sandwich</h3>
-                <span class="price">$X.XX</span>
+                <span class="price">$9.99</span>
               </div>
               <p>Crispy falafel, hummus, fresh veggies.</p>
             </div>
@@ -428,13 +456,15 @@
           <a class="menu-card" data-item="hummus"
              href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15"
              target="_blank" rel="noopener" aria-label="Order Hummus on Foodbooking">
-            <div class="menu-img" role="img" aria-label="House-made hummus with warm pita">
+            <div class="menu-img"
+                 style="background-image: url('https://loremflickr.com/640/360/hummus,pita?lock=13');"
+                 role="img" aria-label="House-made hummus with warm pita">
               <span class="menu-img-emoji" aria-hidden="true">🥣</span>
             </div>
             <div class="menu-body">
               <div class="menu-head">
                 <h3>Hummus</h3>
-                <span class="price">$X.XX</span>
+                <span class="price">$6.99</span>
               </div>
               <p>House-made, olive oil, warm pita.</p>
             </div>
@@ -446,13 +476,15 @@
           <a class="menu-card" data-item="shirazi-salad"
              href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15"
              target="_blank" rel="noopener" aria-label="Order Shirazi Salad on Foodbooking">
-            <div class="menu-img" role="img" aria-label="Shirazi salad with cucumber and tomato">
+            <div class="menu-img"
+                 style="background-image: url('https://loremflickr.com/640/360/cucumber,tomato,salad?lock=14');"
+                 role="img" aria-label="Shirazi salad with cucumber and tomato">
               <span class="menu-img-emoji" aria-hidden="true">🥗</span>
             </div>
             <div class="menu-body">
               <div class="menu-head">
                 <h3>Shirazi Salad</h3>
-                <span class="price">$X.XX</span>
+                <span class="price">$5.99</span>
               </div>
               <p>Cucumber, tomato, onion, lime dressing.</p>
             </div>
@@ -464,13 +496,15 @@
           <a class="menu-card" data-item="mast-o-khiar"
              href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15"
              target="_blank" rel="noopener" aria-label="Order Mast-o-Khiar on Foodbooking">
-            <div class="menu-img" role="img" aria-label="Mast-o-khiar Persian yogurt dip">
+            <div class="menu-img"
+                 style="background-image: url('https://loremflickr.com/640/360/yogurt,persian,dip?lock=15');"
+                 role="img" aria-label="Mast-o-khiar Persian yogurt dip">
               <span class="menu-img-emoji" aria-hidden="true">🥒</span>
             </div>
             <div class="menu-body">
               <div class="menu-head">
                 <h3>Mast-o-Khiar</h3>
-                <span class="price">$X.XX</span>
+                <span class="price">$4.99</span>
               </div>
               <p>Persian cucumber yogurt — cool &amp; creamy.</p>
             </div>
@@ -483,13 +517,15 @@
           <a class="menu-card" data-item="doogh"
              href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15"
              target="_blank" rel="noopener" aria-label="Order Doogh on Foodbooking">
-            <div class="menu-img" role="img" aria-label="Doogh Persian yogurt drink">
+            <div class="menu-img"
+                 style="background-image: url('https://loremflickr.com/640/360/yogurt,drink?lock=16');"
+                 role="img" aria-label="Doogh Persian yogurt drink">
               <span class="menu-img-emoji" aria-hidden="true">🥛</span>
             </div>
             <div class="menu-body">
               <div class="menu-head">
                 <h3>Doogh</h3>
-                <span class="price">$X.XX</span>
+                <span class="price">$3.99</span>
               </div>
               <p>Traditional Persian yogurt drink with mint.</p>
             </div>
@@ -501,13 +537,15 @@
           <a class="menu-card" data-item="soft-drinks"
              href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15"
              target="_blank" rel="noopener" aria-label="Order soft drinks on Foodbooking">
-            <div class="menu-img" role="img" aria-label="Assorted soft drinks">
+            <div class="menu-img"
+                 style="background-image: url('https://loremflickr.com/640/360/soda,cola?lock=17');"
+                 role="img" aria-label="Assorted soft drinks">
               <span class="menu-img-emoji" aria-hidden="true">🥤</span>
             </div>
             <div class="menu-body">
               <div class="menu-head">
                 <h3>Soft Drinks</h3>
-                <span class="price">$X.XX</span>
+                <span class="price">$2.49</span>
               </div>
               <p>Coke, Diet Coke, Sprite, and more.</p>
             </div>
@@ -519,13 +557,15 @@
           <a class="menu-card" data-item="water"
              href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15"
              target="_blank" rel="noopener" aria-label="Order bottled water on Foodbooking">
-            <div class="menu-img" role="img" aria-label="Bottled water">
+            <div class="menu-img"
+                 style="background-image: url('https://loremflickr.com/640/360/water,bottle?lock=18');"
+                 role="img" aria-label="Bottled water">
               <span class="menu-img-emoji" aria-hidden="true">💧</span>
             </div>
             <div class="menu-body">
               <div class="menu-head">
                 <h3>Water</h3>
-                <span class="price">$X.XX</span>
+                <span class="price">$1.99</span>
               </div>
               <p>Bottled spring water.</p>
             </div>

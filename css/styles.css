@@ -726,14 +726,22 @@ body.mobile-nav-open .hamburger span:nth-child(3) { transform: translateY(-7px) 
 .menu-img {
   position: relative;
   aspect-ratio: 16 / 9;
-  background:
-    radial-gradient(ellipse at 40% 60%, rgba(232,90,42,0.65) 0%, rgba(20,16,8,0.95) 75%),
-    var(--c-char);
+  background-color: var(--c-char);
+  background-image:
+    radial-gradient(ellipse at 40% 60%, rgba(232,90,42,0.65) 0%, rgba(20,16,8,0.95) 75%);
+  background-size: cover;
+  background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
 }
+/* When a real photo is set via inline style, warm-tint overlay instead of full gradient */
+.menu-img[style*="url"]::before {
+  background-image: none;
+  background: linear-gradient(180deg, rgba(20,16,8,0.15) 0%, rgba(20,16,8,0.45) 100%);
+}
+.menu-img[style*="url"] .menu-img-emoji { display: none; }
 /* Noise texture over the gradient for that grill-shot feel */
 .menu-img::before {
   content: "";
