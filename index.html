@@ -2,12 +2,15 @@
 <!--
   Kabob Express — index.html
   Values to swap in:
-    • $X.XX prices on each menu card
-    • [YEAR] placeholders in About/Footer
-    • Google Maps iframe API key (YOUR_API_KEY)
-    • Instagram handle if different
-    • Delivery URLs for DoorDash/UberEats/Grubhub
-    • og-cover.jpg path if added
+    • All $X.XX price placeholders on menu cards
+    • [YEAR] in About section and footer with the actual founding year
+    • Google Maps iframe: replace YOUR_API_KEY with a real Maps Embed API key
+      (get one free at console.cloud.google.com → Maps Embed API)
+    • DoorDash / Uber Eats direct restaurant links in the Order CTA and footer
+    • Instagram handle @eatkabob — verify this is current
+    • images/hero.jpg — add a high-quality photo of the grill/food for production
+    • images/kitchen.jpg — add a photo of the kitchen or cooking process
+    • images/og-cover.jpg — social sharing preview image (1200×630px)
 -->
 <html lang="en">
 <head>
@@ -18,12 +21,12 @@
   <meta name="theme-color" content="#c0392b" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Kabob Express | Fresh · Fast · Tasty" />
+  <meta property="og:title"       content="Kabob Express | Fresh · Fast · Tasty" />
   <meta property="og:description" content="Authentic Persian & Mediterranean kabobs in Centreville, VA. Halal. Open 10–10 daily." />
-  <meta property="og:type" content="restaurant.restaurant" />
-  <meta property="og:image" content="images/og-cover.jpg" />
-  <meta property="og:url" content="https://kabobexpressva.com/" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:type"        content="restaurant.restaurant" />
+  <meta property="og:image"       content="images/og-cover.jpg" />
+  <meta property="og:url"         content="https://kabobexpressva.com/" />
+  <meta name="twitter:card"       content="summary_large_image" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -64,7 +67,9 @@
 </head>
 <body>
 
-  <!-- NAV -->
+  <!-- ============================================================
+       NAV — transparent on load, scrolled state handled by JS
+  ============================================================ -->
   <header class="site-header" id="siteHeader">
     <div class="container nav-inner">
       <a href="#home" class="logo" aria-label="Kabob Express home">Kabob<span>Express</span></a>
@@ -73,25 +78,34 @@
           <li><a href="#menu">Menu</a></li>
           <li><a href="#why">About</a></li>
           <li><a href="#location">Visit</a></li>
-          <li><a href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Order Now</a></li>
+          <li>
+            <a href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15"
+               target="_blank" rel="noopener"
+               class="btn btn-primary btn-sm">Order Now</a>
+          </li>
         </ul>
       </nav>
-      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <button class="hamburger" id="hamburger"
+              aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
         <span></span><span></span><span></span>
       </button>
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- ============================================================
+       HERO — full viewport, left-aligned editorial layout
+  ============================================================ -->
   <section class="hero" id="home">
     <div class="hero-bg" role="img" aria-label="Sizzling kabobs on the grill"></div>
     <div class="hero-overlay"></div>
     <div class="container hero-content">
       <p class="hero-tagline">Fresh · Fast · Tasty</p>
-      <h1>Flame-Grilled Kabobs,<br/>Made Fresh Daily.</h1>
+      <h1>Flame-Grilled Kabobs,<br>Made Fresh Daily.</h1>
       <p class="hero-sub">Authentic Persian &amp; Mediterranean favorites — ready in about 10 minutes.</p>
       <div class="hero-cta">
-        <a href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Order Online</a>
+        <a href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15"
+           target="_blank" rel="noopener"
+           class="btn btn-primary btn-lg">Order Online</a>
         <a href="#menu" class="btn btn-outline-light btn-lg">View Menu</a>
       </div>
     </div>
@@ -100,86 +114,135 @@
     </a>
   </section>
 
-  <!-- SOCIAL PROOF STRIP -->
+  <!-- ============================================================
+       SOCIAL PROOF STRIP — dark, gold dividers
+  ============================================================ -->
   <section class="proof-strip" id="proof" aria-label="Why customers love us">
     <div class="container proof-inner">
       <div class="proof-item reveal" style="--i:0">
-        <span class="stars">★★★★★</span>
+        <span class="stars" aria-label="5 stars">★★★★★</span>
         <span class="proof-label">500+ Google Reviews</span>
       </div>
       <div class="proof-divider" aria-hidden="true"></div>
       <div class="proof-item reveal" style="--i:1">
-        <span class="proof-icon">🕙</span>
+        <span class="proof-icon" aria-hidden="true">🕙</span>
         <span class="proof-label">Open Daily · 10 AM – 10 PM</span>
       </div>
       <div class="proof-divider" aria-hidden="true"></div>
       <div class="proof-item reveal" style="--i:2">
-        <span class="proof-icon">⚡</span>
+        <span class="proof-icon" aria-hidden="true">⚡</span>
         <span class="proof-label">Ready in ~10 Minutes</span>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT / WHY -->
+  <!-- ============================================================
+       ABOUT / WHY — warm cream, 2-col grid
+  ============================================================ -->
   <section class="why section" id="why">
     <div class="container why-grid">
       <div class="why-text reveal" style="--i:0">
         <span class="section-label">Our Story</span>
-        <div class="section-head"><h2>Bold Flavors.<br/>Honest Ingredients.</h2></div>
+        <div class="section-head">
+          <h2>Bold Flavors.<br>Honest Ingredients.</h2>
+        </div>
         <p class="section-sub">Family recipes, open-flame grills, and halal meats delivered fresh every morning. We cook like we're cooking for our own family — because we are.</p>
         <ul class="why-list">
-          <li><span class="why-icon">✓</span><div><strong>100% Halal Certified</strong><p>Every meat we serve is certified halal.</p></div></li>
-          <li><span class="why-icon">❄</span><div><strong>Fresh, Never Frozen</strong><p>Delivered daily, grilled to order.</p></div></li>
-          <li><span class="why-icon">♨</span><div><strong>Family Recipes Since [YEAR]</strong><p>Traditions passed down three generations.</p></div></li>
-          <li><span class="why-icon">⚡</span><div><strong>Ready in ~10 Minutes</strong><p>Fast enough for lunch, satisfying for dinner.</p></div></li>
+          <li>
+            <span class="why-icon" aria-hidden="true">✓</span>
+            <div>
+              <strong>100% Halal Certified</strong>
+              <p>Every meat we serve is certified halal.</p>
+            </div>
+          </li>
+          <li>
+            <span class="why-icon" aria-hidden="true">❄</span>
+            <div>
+              <strong>Fresh, Never Frozen</strong>
+              <p>Delivered daily, grilled to order.</p>
+            </div>
+          </li>
+          <li>
+            <span class="why-icon" aria-hidden="true">♨</span>
+            <div>
+              <strong>Family Recipes Since [YEAR]</strong>
+              <p>Traditions passed down three generations.</p>
+            </div>
+          </li>
+          <li>
+            <span class="why-icon" aria-hidden="true">⚡</span>
+            <div>
+              <strong>Ready in ~10 Minutes</strong>
+              <p>Fast enough for lunch, satisfying for dinner.</p>
+            </div>
+          </li>
         </ul>
       </div>
-      <div class="why-image reveal" style="--i:1" role="img" aria-label="Kabob Express kitchen with charcoal grill"></div>
+      <div class="why-image reveal" style="--i:1"
+           role="img" aria-label="Kabob Express kitchen with charcoal grill"></div>
     </div>
   </section>
 
-  <!-- MENU -->
+  <!-- ============================================================
+       MENU — white bg, filter pills, 3-col responsive grid
+  ============================================================ -->
   <section class="menu section" id="menu">
     <div class="container">
       <div class="section-head reveal">
         <span class="section-label">Our Menu</span>
-        <h2>Grilled Fresh,<br/>Just for You</h2>
+        <h2>Grilled Fresh,<br>Just for You</h2>
         <p class="section-sub">Every dish is made to order with premium halal meats and traditional seasonings.</p>
       </div>
 
       <div class="menu-filters reveal" role="tablist" aria-label="Menu categories">
-        <button class="filter-pill active" data-filter="all" role="tab" aria-selected="true">All</button>
-        <button class="filter-pill" data-filter="kabobs" role="tab">Kabobs</button>
-        <button class="filter-pill" data-filter="rice" role="tab">Rice Plates</button>
-        <button class="filter-pill" data-filter="sandwiches" role="tab">Sandwiches</button>
-        <button class="filter-pill" data-filter="sides" role="tab">Sides</button>
-        <button class="filter-pill" data-filter="drinks" role="tab">Drinks</button>
+        <button class="filter-pill active" data-filter="all"         role="tab" aria-selected="true">All</button>
+        <button class="filter-pill"        data-filter="kabobs"      role="tab" aria-selected="false">Kabobs</button>
+        <button class="filter-pill"        data-filter="rice"        role="tab" aria-selected="false">Rice Plates</button>
+        <button class="filter-pill"        data-filter="sandwiches"  role="tab" aria-selected="false">Sandwiches</button>
+        <button class="filter-pill"        data-filter="sides"       role="tab" aria-selected="false">Sides</button>
+        <button class="filter-pill"        data-filter="drinks"      role="tab" aria-selected="false">Drinks</button>
       </div>
 
       <div class="menu-grid" id="menuGrid">
 
+        <!-- KABOBS -->
         <article class="menu-card reveal" data-category="kabobs" style="--i:0">
-          <div class="menu-img" data-emoji="🍢" role="img" aria-label="Kubideh kabob with saffron rice"><span class="badge-popular">🔥 Best Seller</span></div>
+          <div class="menu-img" data-emoji="🍢" role="img" aria-label="Kubideh kabob with saffron rice">
+            <span class="badge-popular">🔥 Best Seller</span>
+          </div>
           <div class="menu-body">
-            <div class="menu-head"><h3><span class="item-num">#1</span>Kubideh Kabob</h3><span class="price">$X.XX</span></div>
+            <div class="menu-head">
+              <h3><span class="item-num">#1</span>Kubideh Kabob</h3>
+              <span class="price">$X.XX</span>
+            </div>
             <p>Seasoned ground beef, saffron rice, grilled tomato.</p>
             <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
           </div>
         </article>
 
         <article class="menu-card reveal" data-category="kabobs" style="--i:1">
-          <div class="menu-img" data-emoji="🍗" role="img" aria-label="Chicken kabob with basmati rice"><span class="badge-popular">🔥 Best Seller</span></div>
+          <div class="menu-img" data-emoji="🍗" role="img" aria-label="Chicken kabob with basmati rice">
+            <span class="badge-popular">🔥 Best Seller</span>
+          </div>
           <div class="menu-body">
-            <div class="menu-head"><h3><span class="item-num">#2</span>Chicken Kabob</h3><span class="price">$X.XX</span></div>
+            <div class="menu-head">
+              <h3><span class="item-num">#2</span>Chicken Kabob</h3>
+              <span class="price">$X.XX</span>
+            </div>
             <p>Marinated boneless thighs, basmati rice, fresh herbs.</p>
             <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
           </div>
         </article>
 
         <article class="menu-card reveal" data-category="kabobs" style="--i:2">
-          <div class="menu-img" data-emoji="🥩" role="img" aria-label="Beef kabob chunks charred on skewers"><span class="badge-popular">🔥 Best Seller</span></div>
+          <div class="menu-img" data-emoji="🥩" role="img" aria-label="Beef kabob chunks charred on skewers">
+            <span class="badge-popular">🔥 Best Seller</span>
+          </div>
           <div class="menu-body">
-            <div class="menu-head"><h3><span class="item-num">#3</span>Beef Kabob</h3><span class="price">$X.XX</span></div>
+            <div class="menu-head">
+              <h3><span class="item-num">#3</span>Beef Kabob</h3>
+              <span class="price">$X.XX</span>
+            </div>
             <p>Sirloin chunks, chargrilled to perfection.</p>
             <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
           </div>
@@ -188,7 +251,10 @@
         <article class="menu-card reveal" data-category="kabobs" style="--i:0">
           <div class="menu-img" data-emoji="🍽️" role="img" aria-label="Half chicken half beef combo platter"></div>
           <div class="menu-body">
-            <div class="menu-head"><h3><span class="item-num">#4</span>Chicken &amp; Beef Combo</h3><span class="price">$X.XX</span></div>
+            <div class="menu-head">
+              <h3><span class="item-num">#4</span>Chicken &amp; Beef Combo</h3>
+              <span class="price">$X.XX</span>
+            </div>
             <p>Half portion of each kabob — the best of both.</p>
             <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
           </div>
@@ -197,7 +263,10 @@
         <article class="menu-card reveal" data-category="kabobs" style="--i:1">
           <div class="menu-img" data-emoji="🦐" role="img" aria-label="Grilled jumbo shrimp skewers"></div>
           <div class="menu-body">
-            <div class="menu-head"><h3><span class="item-num">#5</span>Shrimp Kabob</h3><span class="price">$X.XX</span></div>
+            <div class="menu-head">
+              <h3><span class="item-num">#5</span>Shrimp Kabob</h3>
+              <span class="price">$X.XX</span>
+            </div>
             <p>Grilled jumbo shrimp, lemon butter, fresh herbs.</p>
             <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
           </div>
@@ -206,25 +275,36 @@
         <article class="menu-card reveal" data-category="kabobs" style="--i:2">
           <div class="menu-img" data-emoji="🍖" role="img" aria-label="Grilled lamb chops with saffron rice"></div>
           <div class="menu-body">
-            <div class="menu-head"><h3><span class="item-num">#13</span>Lamb Chops</h3><span class="price">$X.XX</span></div>
+            <div class="menu-head">
+              <h3><span class="item-num">#13</span>Lamb Chops</h3>
+              <span class="price">$X.XX</span>
+            </div>
             <p>Premium chops, house marinade, saffron rice.</p>
             <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
           </div>
         </article>
 
+        <!-- RICE PLATES -->
         <article class="menu-card reveal" data-category="rice" style="--i:0">
           <div class="menu-img" data-emoji="🍚" role="img" aria-label="Gyro over basmati rice"></div>
           <div class="menu-body">
-            <div class="menu-head"><h3><span class="item-num">#17</span>Gyro Over Rice</h3><span class="price">$X.XX</span></div>
+            <div class="menu-head">
+              <h3><span class="item-num">#17</span>Gyro Over Rice</h3>
+              <span class="price">$X.XX</span>
+            </div>
             <p>Shaved gyro, basmati, signature sauces.</p>
             <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
           </div>
         </article>
 
+        <!-- SANDWICHES -->
         <article class="menu-card reveal" data-category="sandwiches" style="--i:0">
           <div class="menu-img" data-emoji="🌯" role="img" aria-label="Gyro sandwich with tzatziki"></div>
           <div class="menu-body">
-            <div class="menu-head"><h3><span class="item-num">#10</span>Gyro Sandwich</h3><span class="price">$X.XX</span></div>
+            <div class="menu-head">
+              <h3><span class="item-num">#10</span>Gyro Sandwich</h3>
+              <span class="price">$X.XX</span>
+            </div>
             <p>Classic gyro, warm pita, tzatziki, tomato, red onion.</p>
             <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
           </div>
@@ -233,7 +313,10 @@
         <article class="menu-card reveal" data-category="sandwiches" style="--i:1">
           <div class="menu-img" data-emoji="🥙" role="img" aria-label="Grilled chicken sandwich in pita"></div>
           <div class="menu-body">
-            <div class="menu-head"><h3><span class="item-num">#11</span>Chicken Sandwich</h3><span class="price">$X.XX</span></div>
+            <div class="menu-head">
+              <h3><span class="item-num">#11</span>Chicken Sandwich</h3>
+              <span class="price">$X.XX</span>
+            </div>
             <p>Grilled chicken, garlic sauce, pickles, pita.</p>
             <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
           </div>
@@ -242,16 +325,23 @@
         <article class="menu-card reveal" data-category="sandwiches" style="--i:2">
           <div class="menu-img" data-emoji="🧆" role="img" aria-label="Crispy falafel sandwich with hummus"></div>
           <div class="menu-body">
-            <div class="menu-head"><h3><span class="item-num">#12</span>Falafel Sandwich</h3><span class="price">$X.XX</span></div>
+            <div class="menu-head">
+              <h3><span class="item-num">#12</span>Falafel Sandwich</h3>
+              <span class="price">$X.XX</span>
+            </div>
             <p>Crispy falafel, hummus, fresh veggies.</p>
             <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
           </div>
         </article>
 
+        <!-- SIDES -->
         <article class="menu-card reveal" data-category="sides" style="--i:0">
           <div class="menu-img" data-emoji="🥣" role="img" aria-label="House-made hummus with warm pita"></div>
           <div class="menu-body">
-            <div class="menu-head"><h3><span class="item-num">#20</span>Hummus</h3><span class="price">$X.XX</span></div>
+            <div class="menu-head">
+              <h3><span class="item-num">#20</span>Hummus</h3>
+              <span class="price">$X.XX</span>
+            </div>
             <p>House-made, olive oil, warm pita.</p>
             <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
           </div>
@@ -260,7 +350,10 @@
         <article class="menu-card reveal" data-category="sides" style="--i:1">
           <div class="menu-img" data-emoji="🥗" role="img" aria-label="Shirazi salad with cucumber and tomato"></div>
           <div class="menu-body">
-            <div class="menu-head"><h3><span class="item-num">#21</span>Shirazi Salad</h3><span class="price">$X.XX</span></div>
+            <div class="menu-head">
+              <h3><span class="item-num">#21</span>Shirazi Salad</h3>
+              <span class="price">$X.XX</span>
+            </div>
             <p>Cucumber, tomato, onion, lime dressing.</p>
             <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
           </div>
@@ -269,16 +362,23 @@
         <article class="menu-card reveal" data-category="sides" style="--i:2">
           <div class="menu-img" data-emoji="🥒" role="img" aria-label="Mast-o-khiar Persian yogurt dip"></div>
           <div class="menu-body">
-            <div class="menu-head"><h3><span class="item-num">#22</span>Mast-o-Khiar</h3><span class="price">$X.XX</span></div>
+            <div class="menu-head">
+              <h3><span class="item-num">#22</span>Mast-o-Khiar</h3>
+              <span class="price">$X.XX</span>
+            </div>
             <p>Persian cucumber yogurt — cool &amp; creamy.</p>
             <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
           </div>
         </article>
 
+        <!-- DRINKS -->
         <article class="menu-card reveal" data-category="drinks" style="--i:0">
           <div class="menu-img" data-emoji="🥛" role="img" aria-label="Doogh Persian yogurt drink"></div>
           <div class="menu-body">
-            <div class="menu-head"><h3>Doogh</h3><span class="price">$X.XX</span></div>
+            <div class="menu-head">
+              <h3>Doogh</h3>
+              <span class="price">$X.XX</span>
+            </div>
             <p>Traditional Persian yogurt drink with mint.</p>
             <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
           </div>
@@ -287,7 +387,10 @@
         <article class="menu-card reveal" data-category="drinks" style="--i:1">
           <div class="menu-img" data-emoji="🥤" role="img" aria-label="Assorted soft drinks"></div>
           <div class="menu-body">
-            <div class="menu-head"><h3>Soft Drinks</h3><span class="price">$X.XX</span></div>
+            <div class="menu-head">
+              <h3>Soft Drinks</h3>
+              <span class="price">$X.XX</span>
+            </div>
             <p>Coke, Diet Coke, Sprite, and more.</p>
             <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
           </div>
@@ -296,21 +399,27 @@
         <article class="menu-card reveal" data-category="drinks" style="--i:2">
           <div class="menu-img" data-emoji="💧" role="img" aria-label="Bottled water"></div>
           <div class="menu-body">
-            <div class="menu-head"><h3>Water</h3><span class="price">$X.XX</span></div>
+            <div class="menu-head">
+              <h3>Water</h3>
+              <span class="price">$X.XX</span>
+            </div>
             <p>Bottled spring water.</p>
             <a class="btn-add" href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Add to Order →</a>
           </div>
         </article>
 
-      </div>
+      </div><!-- /menu-grid -->
 
       <div class="menu-footer reveal">
-        <a href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener" class="link-arrow">View Full Menu →</a>
+        <a href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15"
+           target="_blank" rel="noopener" class="link-arrow">View Full Menu →</a>
       </div>
     </div>
   </section>
 
-  <!-- REVIEWS -->
+  <!-- ============================================================
+       REVIEWS — dark section, pull-quote cards
+  ============================================================ -->
   <section class="reviews section" id="reviews">
     <div class="container">
       <div class="section-head center reveal">
@@ -351,19 +460,26 @@
       </div>
 
       <div class="center reveal">
-        <a href="https://www.google.com/maps/place/?q=place_id:ChIJ" target="_blank" rel="noopener" class="link-arrow">See all reviews on Google →</a>
+        <a href="https://www.google.com/maps/search/Kabob+Express+Centreville+VA/"
+           target="_blank" rel="noopener" class="link-arrow">See all reviews on Google →</a>
       </div>
     </div>
   </section>
 
-  <!-- ORDER CTA -->
+  <!-- ============================================================
+       ORDER CTA — brand-red, urgent and exciting
+  ============================================================ -->
   <section class="order-cta section" id="order">
     <div class="container reveal">
-      <h2>Skip the Line.<br/>Order Online.</h2>
+      <h2>Skip the Line.<br>Order Online.</h2>
       <p class="lead">Ready in ~10 minutes. Pickup or delivery.</p>
       <div class="order-buttons">
-        <a href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener" class="btn btn-white btn-lg">Order Pickup</a>
-        <a href="https://www.doordash.com/" target="_blank" rel="noopener" class="btn btn-outline-light btn-lg">Get Delivery</a>
+        <a href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15"
+           target="_blank" rel="noopener"
+           class="btn btn-white btn-lg">Order Pickup</a>
+        <a href="https://www.doordash.com/"
+           target="_blank" rel="noopener"
+           class="btn btn-outline-light btn-lg">Get Delivery</a>
       </div>
       <div class="delivery-partners" aria-label="Delivery partners">
         <span class="partner-pill">Available on DoorDash</span>
@@ -373,7 +489,9 @@
     </div>
   </section>
 
-  <!-- HOURS & LOCATION -->
+  <!-- ============================================================
+       HOURS & LOCATION — warm cream, 2-col with map
+  ============================================================ -->
   <section class="location section" id="location">
     <div class="container location-grid">
       <div class="location-info reveal" style="--i:0">
@@ -382,12 +500,15 @@
 
         <div class="info-block" id="hours">
           <h3>Hours</h3>
-          <div class="hours-row"><span>Monday – Sunday</span><span>10:00 AM – 10:00 PM</span></div>
+          <div class="hours-row">
+            <span>Monday – Sunday</span>
+            <span>10:00 AM – 10:00 PM</span>
+          </div>
         </div>
 
         <div class="info-block">
           <h3>Address</h3>
-          <address>6057 Centreville Crest Ln<br/>Centreville, VA 20121</address>
+          <address>6057 Centreville Crest Ln<br>Centreville, VA 20121</address>
         </div>
 
         <div class="info-block">
@@ -400,15 +521,18 @@
 
         <div class="location-buttons">
           <a href="tel:+17032220722" class="btn btn-primary">📞 Call to Order</a>
-          <a href="https://maps.google.com/?q=6057+Centreville+Crest+Ln+Centreville+VA+20121" target="_blank" rel="noopener" class="btn btn-outline">Get Directions</a>
+          <a href="https://maps.google.com/?q=6057+Centreville+Crest+Ln+Centreville+VA+20121"
+             target="_blank" rel="noopener" class="btn btn-outline">Get Directions</a>
         </div>
       </div>
 
       <div class="location-map reveal" style="--i:1">
+        <!-- SWAP: replace YOUR_API_KEY with a valid Google Maps Embed API key -->
         <iframe
           title="Kabob Express location map"
           src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=6057+Centreville+Crest+Ln,Centreville,VA+20121"
-          width="100%" height="100%" style="border:0; min-height:450px;"
+          width="100%" height="100%"
+          style="border:0; min-height:460px;"
           allowfullscreen="" loading="lazy"
           referrerpolicy="no-referrer-when-downgrade">
         </iframe>
@@ -416,7 +540,9 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ============================================================
+       FOOTER — very dark, gold top border
+  ============================================================ -->
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-brand">
@@ -428,25 +554,33 @@
         <a href="#menu">Menu</a>
         <a href="#why">About</a>
         <a href="#location">Hours &amp; Location</a>
-        <a href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15" target="_blank" rel="noopener">Order Online</a>
+        <a href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15"
+           target="_blank" rel="noopener">Order Online</a>
       </nav>
       <div class="footer-social">
-        <a href="https://instagram.com/eatkabob" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        <a href="https://instagram.com/eatkabob" target="_blank" rel="noopener" aria-label="Kabob Express on Instagram">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
         </a>
       </div>
       <p class="footer-copy">&copy; <span id="year"></span> Kabob Express. All rights reserved.</p>
     </div>
   </footer>
 
-  <!-- MOBILE STICKY ORDER BAR -->
+  <!-- ============================================================
+       MOBILE STICKY ORDER BAR — hidden on desktop via CSS
+  ============================================================ -->
   <a href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15"
      target="_blank" rel="noopener"
      class="mobile-order-bar" aria-label="Order now">
     Order Now →
   </a>
 
-  <!-- BACK TO TOP -->
+  <!-- BACK TO TOP — desktop only, appears after 400px scroll -->
   <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
 
   <script src="js/main.js" defer></script>
