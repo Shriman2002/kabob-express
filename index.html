@@ -215,7 +215,7 @@
       </div>
       <div class="why-image-wrap reveal" style="--i:1">
         <div class="why-image"
-             style="background-image: url('https://loremflickr.com/800/800/persian,restaurant,grill?lock=11');"
+             style="background-image: url('https://cookingorgeous.com/wp-content/uploads/2021/06/lamb-shish-kebab-20.jpg');"
              role="img" aria-label="Kabob Express kitchen with charcoal grill"></div>
         <span class="why-est-note">est. [YEAR]</span>
       </div>
@@ -272,7 +272,7 @@
              href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15"
              target="_blank" rel="noopener" aria-label="Order Chicken Kabob on Foodbooking">
             <div class="menu-img"
-                 style="background-image: url('https://loremflickr.com/640/360/chicken,kebab?lock=2');"
+                 style="background-image: url('https://kabobexpressva.com/wp-content/uploads/2024/10/chiken-kabob-ai-300x225.jpg');"
                  role="img" aria-label="Chicken kabob with basmati rice">
               <span class="badge-popular">chef's pick</span>
               <span class="menu-img-emoji" aria-hidden="true">🍗</span>
@@ -538,7 +538,7 @@
              href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15"
              target="_blank" rel="noopener" aria-label="Order soft drinks on Foodbooking">
             <div class="menu-img"
-                 style="background-image: url('https://loremflickr.com/640/360/soda,cola?lock=17');"
+                 style="background-image: url('https://static.wixstatic.com/media/8f1abd_bd3eb9cedc474a7f9a74f6ef457661b1~mv2.jpeg/v1/fill/w_744,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/8f1abd_bd3eb9cedc474a7f9a74f6ef457661b1~mv2.jpeg');"
                  role="img" aria-label="Assorted soft drinks">
               <span class="menu-img-emoji" aria-hidden="true">🥤</span>
             </div>
@@ -558,7 +558,7 @@
              href="https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=f6103d83-5b9a-4239-a2ed-28c141ca7d15"
              target="_blank" rel="noopener" aria-label="Order bottled water on Foodbooking">
             <div class="menu-img"
-                 style="background-image: url('https://loremflickr.com/640/360/water,bottle?lock=18');"
+                 style="background-image: url('https://images.thdstatic.com/productImages/2c12c804-7728-4112-9a79-d3dbb0c33548/svn/dasani-water-049000026566-64_600.jpg');"
                  role="img" aria-label="Bottled water">
               <span class="menu-img-emoji" aria-hidden="true">💧</span>
             </div>
@@ -720,14 +720,25 @@
       </div>
 
       <div class="location-map-frame reveal" style="--i:1">
+        <!-- TODO: Add Google Maps Embed API support.
+             Steps:
+               1. Enable "Maps Embed API" in Google Cloud Console.
+               2. Create an API key restricted to referrer kabobexpressva.com/*.
+               3. Replace the <img> below with the commented-out <iframe>,
+                  swapping YOUR_API_KEY for the real key.
+             Docs: https://developers.google.com/maps/documentation/embed/get-started -->
         <div class="location-map">
-          <!-- SWAP: replace YOUR_API_KEY with a valid Google Maps Embed API key -->
+          <img src="https://developers.google.com/static/maps/images/landing/react-codelab-thumbnail.png"
+               alt="Map placeholder — Kabob Express, 6057 Centreville Crest Ln, Centreville, VA 20121"
+               style="width:100%; height:100%; object-fit:cover; display:block;" />
+          <!--
           <iframe
             title="Kabob Express location map"
             src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=6057+Centreville+Crest+Ln,Centreville,VA+20121"
             width="100%" height="100%"
             allowfullscreen="" loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"></iframe>
+          -->
         </div>
       </div>
     </div>
